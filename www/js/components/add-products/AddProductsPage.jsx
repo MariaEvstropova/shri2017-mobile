@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as productActions from '../../actions/productsActions';
+import * as recipesActions from '../../actions/recipesActions';
 import ProductsList from './ProductsList.jsx';
 import ProductsListControls from './ProductsListControls.jsx';
 
@@ -16,7 +17,7 @@ export class AddProductsPage extends React.Component {
     }
 
     _handleRequestDelete(product) {
-        this.props.actions.deleteProduct(product);
+        this.props.productActions.deleteProduct(product);
     }
 
     _handleRequestAdd(newProduct) {
@@ -25,12 +26,18 @@ export class AddProductsPage extends React.Component {
         });
         
         if (!product) {
-            this.props.actions.addProduct(newProduct);
+            this.props.productActions.addProduct(newProduct);
         }
     }
 
-    _handleRequestFind() {
+    _handleRequestFind(event) {
+        event.preventDefault();
+        
+        if (!this.props.products) {
+            return;
+        }
 
+        this.props.recipesActions.loadRecipesVariants(this.props.products);
     }
 
     _handleRequestBarcode() {
@@ -62,7 +69,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(productActions, dispatch)
+        productActions: bindActionCreators(productActions, dispatch),
+        recipesActions: bindActionCreators(recipesActions, dispatch)
     };
 }
 

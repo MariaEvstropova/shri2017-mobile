@@ -1,6 +1,7 @@
 .productsList-wrapper {
     display: flex;
     flex-wrap: wrap;
+    padding-top: 64px;
 }
 
 .productsList-chip {

@@ -1,0 +1,29 @@
+.recipeList-wrapper {
+    padding-top: 64px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.recipeList-ingredients {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.ingredientItem-icon {
+    position: absolute;
+    color: rgba(0, 0, 0, .3) !important;
+}
+
+.ingredientItem-text {
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 30px;
+}
+
+.recipeList-cardText {
+    padding-top: 0 !important;
+}

@@ -4,21 +4,17 @@ import AppBar from 'material-ui/AppBar';
 import ProductsList from './add-products/ProductsList.jsx';
 import AddProductsPage from './add-products/AddProductsPage.jsx';
 
+import styles from '../../css/index.css';
+
 export default class App extends React.Component {
     render() {
-        const styles = {
-            appbar: {
-                textTransform: 'uppercase'
-            }
-        };
-
         return (
             <MuiThemeProvider>
                 <div>
                     <AppBar 
-                        title="feedme" 
+                        title='feedme'
                         showMenuIconButton={false}
-                        style={styles.appbar}
+                        className='appBar'
                     />
                     {this.props.children}
                 </div>
