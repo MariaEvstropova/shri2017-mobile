@@ -87,6 +87,7 @@ export default class ProductsListControls extends React.Component {
 
                 <FloatingActionButton
                     className='actionButton actionButton-actionFind'
+                    onTouchTap={this.props.onFindTap}
                 >
                     <Search />
                 </FloatingActionButton>
@@ -94,6 +95,7 @@ export default class ProductsListControls extends React.Component {
                 <FloatingActionButton
                     className='actionButton actionButton-actionBarcode'
                     mini={true}
+                    onTouchTap={this.props.onBarcodeTap}
                 >
                     <PhotoCamera />
                 </FloatingActionButton>

@@ -1,8 +1,11 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, browserHistory } from 'react-router';  
+import routes from './components/Routes.jsx';
+import configureStore from './store/configureStore';  
+import { Provider } from 'react-redux';
 
-import App from './components/App.jsx';
 import styles from '../css/index.css';
 
 var app = {
@@ -18,7 +21,14 @@ var app = {
         //Для корректной работы библиотеки компонентов material-ui необходимо использовать injectTapEventPlugin
         injectTapEventPlugin();
 
-        ReactDOM.render(<App />, document.getElementById('app'));
+        const store = configureStore();
+
+        ReactDOM.render(
+            <Provider store={store}>
+                <Router history={browserHistory} routes={routes} />
+            </Provider>, 
+            document.getElementById('app')
+        );
     }
 };
 app.initialize();
