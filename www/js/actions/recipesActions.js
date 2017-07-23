@@ -37,3 +37,33 @@ export function loadRecipesSuccess(recipes) {
         recipes: recipes
     };
 }
+
+export function getRecipeById(id) {
+    return function (dispatch) {
+        return request
+            .get(`${yummlyBaseUrl}/api/recipe/${id}`)
+            .set('X-Yummly-App-ID', APP_ID)
+            .set('X-Yummly-App-Key', APP_KEY)
+            .then((result) => {
+                if (!result || !result.body) {
+                    throw { error: 'BadFunctionalCall' };
+                    return;
+                }
+                const recipe = result.body;
+                dispatch(getRecipeByIdSuccess(recipe));
+            }).catch((error) => {
+                navigator.notification.alert(
+                    ' Something went wrong ≧☉_☉≦ ',
+                    null,
+                    ' ouch! '
+                );
+            });
+    };
+}
+
+export function getRecipeByIdSuccess(recipe) {
+    return {
+        type: types.GET_RECIPE_BY_ID_SUCCESS,
+        recipeDetails: recipe
+    };
+}

@@ -1,4 +1,5 @@
 export default {
     products: [],
-    recipes: []
+    recipes: [],
+    recipeDetails: null
 }

@@ -5,6 +5,7 @@ import * as productActions from '../../actions/productsActions';
 import * as recipesActions from '../../actions/recipesActions';
 import ProductsList from './ProductsList.jsx';
 import ProductsListControls from './ProductsListControls.jsx';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 export class AddProductsPage extends React.Component {
     constructor(props) {
@@ -15,10 +16,17 @@ export class AddProductsPage extends React.Component {
         this._handleRequestFind = this._handleRequestFind.bind(this);
         this._handleRequestBarcode = this._handleRequestBarcode.bind(this);
         this._handleBarcodeScanned = this._handleBarcodeScanned.bind(this);
+
+        this.state = {
+            isLoading: false
+        };
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.recipes !== this.props.recipes) {
+
+            this.setState({ isLoading: false });
+
             if (Array.isArray(newProps.recipes)) {
                 if (newProps.recipes.length > 0) {
                     this.props.router.push('/recipeslist');
@@ -52,6 +60,7 @@ export class AddProductsPage extends React.Component {
             return;
         }
 
+        this.setState({ isLoading: true });
         this.props.recipesActions.loadRecipesVariants(this.props.products);
     }
 
@@ -105,7 +114,19 @@ export class AddProductsPage extends React.Component {
                     onAdd={this._handleRequestAdd}
                     onFindTap={this._handleRequestFind}
                     onBarcodeTap={this._handleRequestBarcode}
-                />
+                /> 
+                {
+                    this.state.isLoading ? 
+                    <div>
+                        <RefreshIndicator
+                            size={50}
+                            left={window.innerWidth / 2 - 25}
+                            top={window.innerHeight / 2 - 115}
+                            status="loading"
+                            style={{ position: 'relative' }}
+                        />
+                    </div> : null
+                }
             </div>
         );
     }

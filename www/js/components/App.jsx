@@ -4,8 +4,6 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import Home from 'material-ui/svg-icons/action/home';
 import { Link } from 'react-router';
-import ProductsList from './add-products/ProductsList.jsx';
-import AddProductsPage from './add-products/AddProductsPage.jsx';
 
 import styles from '../../css/index.css';
 
