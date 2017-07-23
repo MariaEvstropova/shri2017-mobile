@@ -1,9 +1,6 @@
 .productsList-wrapper {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 64px;
-}
-
-.productsList-chip {
-    margin: 4px !important;
+    padding: 5px;
+    padding-top: 69px;
 }

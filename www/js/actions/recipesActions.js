@@ -6,7 +6,7 @@ export function loadRecipesVariants(products) {
     return function (dispatch) {
         let query = '';
         products.forEach((product) => {
-            query += `allowedIngredient[]=${product}&`;
+            query += `allowedIngredient[]=${product.toLowerCase()}&`;
         });
 
         return request
@@ -23,9 +23,9 @@ export function loadRecipesVariants(products) {
                 dispatch(loadRecipesSuccess(recipes));
             }).catch((error) => {
                 navigator.notification.alert(
-                    'Something went wrong',
+                    ' Something went wrong ≧☉_☉≦ ',
                     null,
-                    'ouch!'
+                    ' ouch! '
                 );
             });
     };

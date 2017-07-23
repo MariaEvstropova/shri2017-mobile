@@ -5,6 +5,11 @@
     overflow-x: hidden;
 }
 
+.recipeList-recipe {
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+
 .recipeList-ingredients {
     list-style-type: none;
     padding: 0;
@@ -22,8 +27,4 @@
     display: inline-block;
     margin-top: 6px;
     margin-left: 30px;
-}
-
-.recipeList-cardText {
-    padding-top: 0 !important;
 }

@@ -1,6 +1,9 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import Home from 'material-ui/svg-icons/action/home';
+import { Link } from 'react-router';
 import ProductsList from './add-products/ProductsList.jsx';
 import AddProductsPage from './add-products/AddProductsPage.jsx';
 
@@ -15,6 +18,13 @@ export default class App extends React.Component {
                         title='feedme'
                         showMenuIconButton={false}
                         className='appBar'
+                        iconElementRight={
+                            <Link to="/">
+                                <IconButton>
+                                    <Home className='appBar-nagigateHome'/>
+                                </IconButton>
+                            </Link>
+                        }
                     />
                     {this.props.children}
                 </div>

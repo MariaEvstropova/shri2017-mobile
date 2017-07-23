@@ -9,6 +9,8 @@ export default function productsReducer(state = initialState.products, action) {
             return state.filter((item) => {
                 return item !== action.product;
             });
+        case types.GET_PRODUCT_BY_BARCODE_SUCCESS: 
+            return [...state, action.product];
         default:
             return state;
     }

@@ -70,7 +70,6 @@ export default class ProductsListControls extends React.Component {
             <FlatButton
                 label="Submit"
                 primary={true}
-                keyboardFocused={true}
                 onTouchTap={this._handleRequestSubmit}
             />
         ];

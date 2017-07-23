@@ -8,3 +8,7 @@ html, body {
   position: fixed !important;
   text-transform: uppercase;
 }
+
+.appBar-nagigateHome {
+  color: #fff !important;
+}

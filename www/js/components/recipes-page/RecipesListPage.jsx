@@ -21,6 +21,9 @@ export class RecipesListPage extends React.Component {
 
     render() {
         const styles = {
+            cardHeader: {
+                backgroundColor: 'rgb(194, 241, 211)'
+            },
             titleStyle: {
                 fontSize: '16px',
                 fontWeight: 'bold',
@@ -34,34 +37,39 @@ export class RecipesListPage extends React.Component {
 
         return (
             <div className='recipeList-wrapper'>
-                {this.props.recipes.map((recipe) => {
+                {this.props.recipes.map((recipe, index) => {
                     return (
-                        <Card>
-                            <CardHeader
-                                title={recipe.recipeName}
-                                titleStyle={styles.titleStyle}
-                                subtitle={`Recipe rating - ${recipe.rating}`}
-                                avatar={recipe.smallImageUrls.length > 0 ? recipe.smallImageUrls[0] : '../../../img/logo.png'}
-                                iconStyle={styles.iconStyle}
-                            />
-                            <CardText className='recipeList-cardText'>
-                                <ul className='recipeList-ingredients'>
-                                    {
-                                        recipe.ingredients.map((ingredient) => {
-                                            return (
-                                                <li className='ingredientItem'>
-                                                    <Cake className='ingredientItem-icon'/>
-                                                    <span className='ingredientItem-text'>{ ingredient }</span>
-                                                </li>);
-                                        })
-                                    }
-                                </ul>
-                                <RaisedButton 
-                                    label="Details"
-                                    onTouchTap={this._handleShowDetails.bind(this, recipe.id)}
+                        <div className='recipeList-recipe' key={index} >
+                            <Card>
+                                <CardHeader
+                                    title={recipe.recipeName}
+                                    titleStyle={styles.titleStyle}
+                                    subtitle={`Recipe rating - ${recipe.rating}`}
+                                    avatar={recipe.smallImageUrls.length > 0 ? recipe.smallImageUrls[0] : '../../../img/logo.png'}
+                                    iconStyle={styles.iconStyle}
+                                    style={styles.cardHeader}
                                 />
-                            </CardText>
-                        </Card>
+                                <CardText>
+                                    <ul className='recipeList-ingredients'>
+                                        {
+                                            recipe.ingredients.map((ingredient, ingredientIndex) => {
+                                                return (
+                                                    <li className='ingredientItem' key={ index + '_' + ingredientIndex }>
+                                                        <Cake className='ingredientItem-icon'/>
+                                                        <span className='ingredientItem-text'>{ ingredient }</span>
+                                                    </li>
+                                                );
+                                            })
+                                        }
+                                    </ul>
+                                    <RaisedButton 
+                                        label='Details'
+                                        onTouchTap={this._handleShowDetails.bind(this, recipe.id)}
+                                        backgroundColor='rgb(194, 241, 211)'
+                                    />
+                                </CardText>
+                            </Card>
+                        </div>
                     );
                 })}
             </div>
