@@ -20,6 +20,7 @@ var app = {
     onDeviceReady: function() {
         //Для корректной работы библиотеки компонентов material-ui необходимо использовать injectTapEventPlugin
         injectTapEventPlugin();
+        navigator.splashscreen.hide();
 
         const store = configureStore();
 

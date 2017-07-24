@@ -12363,11 +12363,11 @@ var _propTypes = __webpack_require__(3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _keyboardArrowUp = __webpack_require__(407);
+var _keyboardArrowUp = __webpack_require__(406);
 
 var _keyboardArrowUp2 = _interopRequireDefault(_keyboardArrowUp);
 
-var _keyboardArrowDown = __webpack_require__(406);
+var _keyboardArrowDown = __webpack_require__(405);
 
 var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
 
@@ -18932,9 +18932,9 @@ var _IconButton = __webpack_require__(116);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _home = __webpack_require__(403);
+var _arrowBack = __webpack_require__(408);
 
-var _home2 = _interopRequireDefault(_home);
+var _arrowBack2 = _interopRequireDefault(_arrowBack);
 
 var _reactRouter = __webpack_require__(89);
 
@@ -18953,13 +18953,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
-    function App() {
+    function App(props) {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+        _this._handleNavigateBack = _this._handleNavigateBack.bind(_this);
+        return _this;
     }
 
     _createClass(App, [{
+        key: '_handleNavigateBack',
+        value: function _handleNavigateBack() {
+            _reactRouter.hashHistory.goBack();
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -18972,14 +18980,10 @@ var App = function (_React$Component) {
                         title: 'feedme',
                         showMenuIconButton: false,
                         className: 'appBar',
-                        iconElementRight: _react2.default.createElement(
-                            _reactRouter.Link,
-                            { to: '/' },
-                            _react2.default.createElement(
-                                _IconButton2.default,
-                                null,
-                                _react2.default.createElement(_home2.default, { className: 'appBar-nagigateHome' })
-                            )
+                        iconElementRight: this.props.location.pathname === App.index ? null : _react2.default.createElement(
+                            _IconButton2.default,
+                            { onTouchTap: this._handleNavigateBack },
+                            _react2.default.createElement(_arrowBack2.default, { className: 'appBar-nagigateHome' })
                         )
                     }),
                     this.props.children
@@ -18992,6 +18996,11 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = App;
+
+
+App.index = '/';
+App.recipesList = '/recipeslist';
+App.recipeDetails = '/recipedetails';
 
 /***/ }),
 /* 235 */
@@ -19317,15 +19326,15 @@ var _FloatingActionButton = __webpack_require__(374);
 
 var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 
-var _add = __webpack_require__(405);
+var _add = __webpack_require__(404);
 
 var _add2 = _interopRequireDefault(_add);
 
-var _photoCamera = __webpack_require__(408);
+var _photoCamera = __webpack_require__(407);
 
 var _photoCamera2 = _interopRequireDefault(_photoCamera);
 
-var _search = __webpack_require__(404);
+var _search = __webpack_require__(403);
 
 var _search2 = _interopRequireDefault(_search);
 
@@ -19870,6 +19879,7 @@ var app = {
     onDeviceReady: function onDeviceReady() {
         //Для корректной работы библиотеки компонентов material-ui необходимо использовать injectTapEventPlugin
         (0, _reactTapEventPlugin2.default)();
+        navigator.splashscreen.hide();
 
         var store = (0, _configureStore2.default)();
 
@@ -36809,44 +36819,6 @@ var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ActionHome = function ActionHome(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' })
-  );
-};
-ActionHome = (0, _pure2.default)(ActionHome);
-ActionHome.displayName = 'ActionHome';
-ActionHome.muiName = 'SvgIcon';
-
-exports.default = ActionHome;
-
-/***/ }),
-/* 404 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(28);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(25);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var ActionSearch = function ActionSearch(props) {
   return _react2.default.createElement(
     _SvgIcon2.default,
@@ -36861,7 +36833,7 @@ ActionSearch.muiName = 'SvgIcon';
 exports.default = ActionSearch;
 
 /***/ }),
-/* 405 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36899,7 +36871,7 @@ ContentAdd.muiName = 'SvgIcon';
 exports.default = ContentAdd;
 
 /***/ }),
-/* 406 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36937,7 +36909,7 @@ HardwareKeyboardArrowDown.muiName = 'SvgIcon';
 exports.default = HardwareKeyboardArrowDown;
 
 /***/ }),
-/* 407 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36975,7 +36947,7 @@ HardwareKeyboardArrowUp.muiName = 'SvgIcon';
 exports.default = HardwareKeyboardArrowUp;
 
 /***/ }),
-/* 408 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37012,6 +36984,44 @@ ImagePhotoCamera.displayName = 'ImagePhotoCamera';
 ImagePhotoCamera.muiName = 'SvgIcon';
 
 exports.default = ImagePhotoCamera;
+
+/***/ }),
+/* 408 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(28);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(25);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NavigationArrowBack = function NavigationArrowBack(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z' })
+  );
+};
+NavigationArrowBack = (0, _pure2.default)(NavigationArrowBack);
+NavigationArrowBack.displayName = 'NavigationArrowBack';
+NavigationArrowBack.muiName = 'SvgIcon';
+
+exports.default = NavigationArrowBack;
 
 /***/ }),
 /* 409 */
