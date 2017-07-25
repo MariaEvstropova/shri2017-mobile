@@ -6,8 +6,7 @@ import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
-import styles from '../../../css/add-products/product-list-controls.css';
+import styled from 'styled-components';
 
 export default class ProductsListControls extends React.Component {
     constructor(props) {
@@ -76,28 +75,25 @@ export default class ProductsListControls extends React.Component {
 
         return (
             <div>
-                <FloatingActionButton
-                    className='actionButton actionButton-actionAdd'
+                <StyledButtonAdd
                     mini={true}
                     onTouchTap={this._handleRequestOpen}
                 >
                     <ContentAdd />
-                </FloatingActionButton>
+                </StyledButtonAdd>
 
-                <FloatingActionButton
-                    className='actionButton actionButton-actionFind'
+                <StyledButtonFind
                     onTouchTap={this.props.onFindTap}
                 >
                     <Search />
-                </FloatingActionButton>
+                </StyledButtonFind>
 
-                <FloatingActionButton
-                    className='actionButton actionButton-actionBarcode'
+                <StyledButtonBarcode
                     mini={true}
                     onTouchTap={this.props.onBarcodeTap}
                 >
                     <PhotoCamera />
-                </FloatingActionButton>
+                </StyledButtonBarcode>
 
                 <Dialog
                     title="Type product's name"
@@ -106,9 +102,8 @@ export default class ProductsListControls extends React.Component {
                     open={this.state.open}
                     onRequestClose={this._handleRequestClose}
                 >
-                    <TextField
+                    <StyledTextField
                         hintText="Product's name"
-                        className='dialog-textField'
                         onChange={this._handleInputChange}
                     />
                 </Dialog>
@@ -116,3 +111,26 @@ export default class ProductsListControls extends React.Component {
         );
     }
 }
+
+const StyledButtonAdd = styled(FloatingActionButton)`
+    position: fixed;
+    bottom: 24px;
+    left: calc(50% - 78px);
+`;
+
+const StyledButtonFind = styled(FloatingActionButton)`
+    position: fixed;
+    bottom: 24px;
+    left: calc(50% - 28px);
+`;
+
+const StyledButtonBarcode = styled(FloatingActionButton)`
+    position: fixed;
+    bottom: 24px;
+    left: calc(50% + 38px);
+`;
+
+const StyledTextField = styled(TextField)`
+    width: 100%;
+    max-width: 100%;
+`;

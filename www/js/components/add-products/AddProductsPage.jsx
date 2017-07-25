@@ -6,6 +6,7 @@ import * as recipesActions from '../../actions/recipesActions';
 import ProductsList from './ProductsList.jsx';
 import ProductsListControls from './ProductsListControls.jsx';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import styled from 'styled-components';
 
 export class AddProductsPage extends React.Component {
     constructor(props) {
@@ -121,9 +122,8 @@ export class AddProductsPage extends React.Component {
                         <RefreshIndicator
                             size={50}
                             left={window.innerWidth / 2 - 25}
-                            top={window.innerHeight / 2 - 115}
+                            top={window.innerHeight / 2}
                             status="loading"
-                            style={{ position: 'relative' }}
                         />
                     </div> : null
                 }
@@ -147,3 +147,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProductsPage);
+
+const StyledRefreshIndicator = styled(RefreshIndicator)`
+    position: relative;
+`;

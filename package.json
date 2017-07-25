@@ -77,7 +77,9 @@
         "react-tap-event-plugin": "^2.0.1",
         "redux": "^3.7.2",
         "redux-thunk": "^2.2.0",
-        "superagent": "^3.5.2"
+        "styled-components": "^2.1.1",
+        "superagent": "^3.5.2",
+        "nl.x-services.plugins.socialsharing": "https://github.com/Telerik-Verified-Plugins/SocialSharing"
     },
     "devDependencies": {
         "babel": "^6.23.0",

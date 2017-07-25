@@ -3,9 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back.js';
-import { hashHistory } from 'react-router'
-
-import styles from '../../css/index.css';
+import { hashHistory } from 'react-router';
+import styled from 'styled-components';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -22,14 +21,13 @@ export default class App extends React.Component {
         return (
             <MuiThemeProvider>
                 <div>
-                    <AppBar 
+                    <StyledAppBar 
                         title='feedme'
-                        showMenuIconButton={false}
-                        className='appBar'
-                        iconElementRight={
+                        showMenuIconButton={this.props.location.pathname !== App.index}
+                        iconElementLeft={
                             this.props.location.pathname === App.index ? null :
                             <IconButton onTouchTap={this._handleNavigateBack}>
-                                <ArrowBack className='appBar-nagigateHome'/>
+                                <StyledArrowBack />
                             </IconButton>
                         }
                     />
@@ -39,6 +37,15 @@ export default class App extends React.Component {
         );
     }
 }
+
+const StyledAppBar = styled(AppBar)`
+    position: fixed !important;
+    text-transform: uppercase;
+`;
+
+const StyledArrowBack = styled(ArrowBack)`
+    color: #fff;
+`;
 
 App.index = '/';
 App.recipesList = '/recipeslist';

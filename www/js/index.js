@@ -5,8 +5,7 @@ import { Router, hashHistory } from 'react-router';
 import routes from './components/Routes.jsx';
 import configureStore from './store/configureStore';  
 import { Provider } from 'react-redux';
-
-import styles from '../css/index.css';
+import { injectGlobal } from 'styled-components';
 
 var app = {
     initialize: function() {
@@ -30,6 +29,13 @@ var app = {
             </Provider>, 
             document.getElementById('app')
         );
+
+        injectGlobal`
+            body {
+                margin: 0; 
+                padding: 0;
+            }
+        `;
     }
 };
 app.initialize();

@@ -6,8 +6,7 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import Cake from 'material-ui/svg-icons/social/cake';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-
-import styles from '../../../css/recipes-list/recipe-list.css';
+import styled from 'styled-components';
 
 export class RecipesListPage extends React.Component {
     constructor(props) {
@@ -51,10 +50,10 @@ export class RecipesListPage extends React.Component {
         };
 
         return (
-            <div className='recipeList-wrapper'>
+            <StyledWrapper>
                 {this.props.recipes.map((recipe, index) => {
                     return (
-                        <div className='recipeList-recipe' key={index} >
+                        <StyledRecipe key={index} >
                             <Card>
                                 <CardHeader
                                     title={recipe.recipeName}
@@ -65,18 +64,18 @@ export class RecipesListPage extends React.Component {
                                     style={styles.cardHeader}
                                 />
                                 <CardText>
-                                    <ul className='recipeList-ingredients'>
+                                    <StyledList>
                                         {
                                             recipe.ingredients.map((ingredient, ingredientIndex) => {
                                                 return (
-                                                    <li className='ingredientItem' key={ index + '_' + ingredientIndex }>
-                                                        <Cake className='ingredientItem-icon'/>
-                                                        <span className='ingredientItem-text'>{ ingredient }</span>
+                                                    <li key={ index + '_' + ingredientIndex }>
+                                                        <StyledCake/>
+                                                        <StyledIconText>{ ingredient }</StyledIconText>
                                                     </li>
                                                 );
                                             })
                                         }
-                                    </ul>
+                                    </StyledList>
                                     <RaisedButton 
                                         label='Details'
                                         onTouchTap={this._handleShowDetails.bind(this, recipe.id)}
@@ -84,7 +83,7 @@ export class RecipesListPage extends React.Component {
                                     />
                                 </CardText>
                             </Card>
-                        </div>
+                        </StyledRecipe>
                     );
                 })}
                 {
@@ -93,13 +92,12 @@ export class RecipesListPage extends React.Component {
                         <RefreshIndicator
                             size={50}
                             left={window.innerWidth / 2 - 25}
-                            top={window.innerHeight / 2 - 115}
+                            top={window.innerHeight / 2}
                             status="loading"
-                            style={{ position: 'relative' }}
                         />
                     </div> : null
                 }
-            </div>
+            </StyledWrapper>
         );
     }
 }
@@ -118,3 +116,38 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipesListPage);
+
+const StyledWrapper = styled.div`
+    padding-top: 64px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+`;
+
+const StyledRecipe = styled.div`
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+`;
+
+const StyledIconText = styled.span`
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 30px;
+`;
+
+const StyledCake = styled(Cake)`
+    position: absolute;
+    color: rgba(0, 0, 0, .3) !important;
+`;
+
+const StyledList = styled.ul`
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    line-height: 1.5;
+`;
+
+const StyledRefresh = styled(RefreshIndicator)`
+    position: relative;
+`;

@@ -1,7 +1,6 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
-
-import styles from '../../../css/add-products/products-list.css';
+import styled from 'styled-components';
 
 export default class ProductsList extends React.Component {
     _handleDelete(item, event) {
@@ -29,7 +28,7 @@ export default class ProductsList extends React.Component {
         }
 
         return (
-            <div className='productsList-wrapper'>
+            <Wrapper>
                 {
                     this.props.products.map((item, index) => {
                         return (
@@ -45,7 +44,14 @@ export default class ProductsList extends React.Component {
                         );
                     })
                 }
-            </div>
+            </Wrapper>
         );
     }
 }
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    padding-top: 69px;
+`;
